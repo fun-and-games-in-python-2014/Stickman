@@ -21,7 +21,12 @@ class Game:
                 self.canvas.create_image(x * w, y * h, image=self.bg, anchor='nw')
         self.sprites = []
         self.running = True
-
+        btn1 = Button(self.tk, text="Restart", command=self.restart)
+        btn1.pack()
+    def restart(self):
+        for sprite in self.sprites:
+            sprite.restart()
+            self.running = True
     def mainloop(self):
         while 1:
             if self.running == True:
@@ -88,6 +93,8 @@ class Sprite:
         self.coordinates = None
     def move(self):
         pass
+    def restart(self):
+        self.endgame = False
     def coords(self):
         return self.coordinates
 
@@ -122,7 +129,10 @@ class StickFigureSprite(Sprite):
         game.canvas.bind_all('<KeyPress-Left>', self.turn_left)
         game.canvas.bind_all('<KeyPress-Right>', self.turn_right)
         game.canvas.bind_all('<space>', self.jump)
-
+    def restart(self):
+        Sprite.restart(self)
+        pos = self.game.canvas.coords(self.image)
+        self.game.canvas.move(self.image, 200-pos[0], 470-pos[1])        
     def turn_left(self, evt):
         if self.y == 0:
             self.x = -2
