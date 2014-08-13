@@ -102,9 +102,9 @@ class StickFigureSprite(Sprite):
     def __init__(self, game):
         Sprite.__init__(self, game)
         self.images_left = [
-            PhotoImage(file="stick-L1.gif"),
-            PhotoImage(file="stick-L2.gif"),
-            PhotoImage(file="stick-L3.gif")
+            PhotoImage(file="stickman-l1.gif"),
+            PhotoImage(file="stickman-l2.gif"),
+            PhotoImage(file="stickman-l3.gif")
         ]
         self.images_right = [
             PhotoImage(file="stickman1.gif"),
