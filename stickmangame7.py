@@ -107,9 +107,9 @@ class StickFigureSprite(Sprite):
             PhotoImage(file="stick-L3.gif")
         ]
         self.images_right = [
-            PhotoImage(file="stick-R1.gif"),
-            PhotoImage(file="stick-R2.gif"),
-            PhotoImage(file="stick-R3.gif")
+            PhotoImage(file="stickman1.gif"),
+            PhotoImage(file="stickman2.gif"),
+            PhotoImage(file="stickman3.gif")
         ]
         self.image = game.canvas.create_image(200, 470, image=self.images_left[0], anchor='nw')
         self.x = -2
@@ -239,16 +239,16 @@ class DoorSprite(Sprite):
 
 
 g = Game()
-platform1 = PlatformSprite(g, PhotoImage(file="platform1.gif"), 0, 480, 100, 10)
-platform2 = PlatformSprite(g, PhotoImage(file="platform1.gif"), 150, 440, 100, 10)
-platform3 = PlatformSprite(g, PhotoImage(file="platform1.gif"), 300, 400, 100, 10)
-platform4 = PlatformSprite(g, PhotoImage(file="platform1.gif"), 300, 160, 100, 10)
-platform5 = PlatformSprite(g, PhotoImage(file="platform2.gif"), 175, 350, 66, 10)
-platform6 = PlatformSprite(g, PhotoImage(file="platform2.gif"), 50, 300, 66, 10)
-platform7 = PlatformSprite(g, PhotoImage(file="platform2.gif"), 170, 120, 66, 10)
-platform8 = PlatformSprite(g, PhotoImage(file="platform2.gif"), 45, 60, 66, 10)
-platform9 = PlatformSprite(g, PhotoImage(file="platform3.gif"), 170, 250, 32, 10)
-platform10 = PlatformSprite(g, PhotoImage(file="platform3.gif"), 230, 200, 32, 10)
+platform1 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 0, 480, 100, 10)
+platform2 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 150, 440, 100, 10)
+platform3 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 300, 400, 100, 10)
+platform4 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 300, 160, 100, 10)
+platform5 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 175, 350, 66, 10)
+platform6 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 50, 300, 66, 10)
+platform7 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 170, 120, 66, 10)
+platform8 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 45, 60, 66, 10)
+platform9 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 170, 250, 32, 10)
+platform10 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 230, 200, 32, 10)
 g.sprites.append(platform1)
 g.sprites.append(platform2)
 g.sprites.append(platform3)
