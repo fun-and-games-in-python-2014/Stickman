@@ -5,7 +5,7 @@ import time
 class Game:
     def __init__(self):
         self.tk = Tk()
-        self.tk.title("Mr. Stick Man Races for the Exit")
+        self.tk.title("Agent Stick Man Races for the Exit")
         self.tk.resizable(0, 0)
         self.tk.wm_attributes("-topmost", 1)
         self.canvas = Canvas(self.tk, width=500, height=500, highlightthickness=0)
@@ -35,6 +35,8 @@ class Game:
             self.tk.update_idletasks()
             self.tk.update()
             time.sleep(0.01)
+
+##lol
 
 class Coords:
     def __init__(self, x1=0, y1=0, x2=0, y2=0):
