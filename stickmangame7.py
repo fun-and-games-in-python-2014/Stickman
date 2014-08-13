@@ -112,7 +112,7 @@ class StickFigureSprite(Sprite):
             PhotoImage(file="stickman3.gif")
         ]
         self.image = game.canvas.create_image(200, 470, image=self.images_left[0], anchor='nw')
-        self.x = -2
+        self.x = -2   
         self.y = 0
         self.current_image = 0
         self.current_image_add = 1
@@ -239,16 +239,16 @@ class DoorSprite(Sprite):
 
 
 g = Game()
-platform1 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 0, 480, 100, 10)
-platform2 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 150, 440, 100, 10)
-platform3 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 300, 400, 100, 10)
-platform4 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 300, 160, 100, 10)
+platform1 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 0, 480, 100, 10)
+platform2 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 150, 440, 100, 10)
+platform3 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 300, 400, 100, 10)
+platform4 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 300, 160, 100, 10)
 platform5 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 175, 350, 66, 10)
 platform6 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 50, 300, 66, 10)
 platform7 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 170, 120, 66, 10)
 platform8 = PlatformSprite(g, PhotoImage(file="medium platform.gif"), 45, 60, 66, 10)
-platform9 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 170, 250, 32, 10)
-platform10 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 230, 200, 32, 10)
+platform9 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 170, 250, 32, 10)
+platform10 = PlatformSprite(g, PhotoImage(file="small platform.gif"), 230, 200, 32, 10)
 g.sprites.append(platform1)
 g.sprites.append(platform2)
 g.sprites.append(platform3)
@@ -259,7 +259,7 @@ g.sprites.append(platform7)
 g.sprites.append(platform8)
 g.sprites.append(platform9)
 g.sprites.append(platform10)
-door = DoorSprite(g, PhotoImage(file="door1.gif"), 45, 30, 40, 35)
+door = DoorSprite(g, PhotoImage(file="door1.gif"), 55, 30, 40, 35)
 g.sprites.append(door)
 sf = StickFigureSprite(g)
 g.sprites.append(sf)
