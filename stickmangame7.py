@@ -94,7 +94,7 @@ class Sprite:
     def move(self):
         pass
     def restart(self):
-        self.endgame = False
+        pass
     def coords(self):
         return self.coordinates
 
