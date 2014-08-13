@@ -21,7 +21,7 @@ class Game:
                 self.canvas.create_image(x * w, y * h, image=self.bg, anchor='nw')
         self.sprites = []
         self.running = True
-        btn1 = Button(self.tk, text="Restart", command=self.restart)
+        btn1 = Button(self.tk, text="                                                      Restart                                                     ", command=self.restart)
         btn1.pack()
     def restart(self):
         for sprite in self.sprites:
