@@ -8,7 +8,7 @@ class Game:
         self.tk.title("Agent Stick Man Races for the Exit")
         self.tk.resizable(0, 0)
         self.tk.wm_attributes("-topmost", 1)
-        self.canvas = Canvas(self.tk, width=500, height=500, highlightthickness=0)
+        self.canvas = Canvas(self.tk, width=1000, height=500, highlightthickness=0)
         self.canvas.pack()
         self.tk.update()
         self.canvas_height = 500
@@ -118,6 +118,7 @@ class StickFigureSprite(Sprite):
             PhotoImage(file="stickman2.gif"),
             PhotoImage(file="stickman3.gif")
         ]
+        self.image_splat = PhotoImage(file="dead.gif")
         self.image = game.canvas.create_image(200, 470, image=self.images_left[0], anchor='nw')
         self.x = -2   
         self.y = 0
@@ -126,13 +127,17 @@ class StickFigureSprite(Sprite):
         self.jump_count = 0
         self.last_time = time.time()
         self.coordinates = Coords()
+        self.distance_fallen = 0
+        self.splat = False
         game.canvas.bind_all('<KeyPress-Left>', self.turn_left)
         game.canvas.bind_all('<KeyPress-Right>', self.turn_right)
         game.canvas.bind_all('<space>', self.jump)
     def restart(self):
         Sprite.restart(self)
         pos = self.game.canvas.coords(self.image)
-        self.game.canvas.move(self.image, 200-pos[0], 470-pos[1])        
+        self.game.canvas.move(self.image, 200-pos[0], 470-pos[1])
+        self.splat = False
+        self.animate()
     def turn_left(self, evt):
         if self.y == 0:
             self.x = -2
@@ -147,6 +152,9 @@ class StickFigureSprite(Sprite):
             self.jump_count = 0
             
     def animate(self):
+        if self.splat:
+            self.game.canvas.itemconfig(self.image, image=self.image_splat)
+            return
         if self.x != 0 and self.y == 0:
             if time.time() - self.last_time > 0.1:
                 self.last_time = time.time()
@@ -221,13 +229,13 @@ class StickFigureSprite(Sprite):
 
             if bottom and falling and self.y == 0 and co.y2 < self.game.canvas_height and collided_bottom(1, co, sprite_co):
                 falling = False
-                
+
             if left and self.x < 0 and collided_left(co, sprite_co):
                 self.x = 0
                 left = False
                 if sprite.endgame:
                     self.game.running = False
-
+ 
             if right and self.x > 0 and collided_right(co, sprite_co):
                 self.x = 0
                 right = False
@@ -236,7 +244,15 @@ class StickFigureSprite(Sprite):
             
         if falling and bottom and self.y == 0 and co.y2 < self.game.canvas_height:
             self.y = 4
-        
+        if self.y > 0:
+            self.distance_fallen = self.distance_fallen+1
+        elif self.distance_fallen > 60:
+            self.game.running = False
+            self.distance_fallen = 0
+            self.splat = True
+            self.animate()
+        else:
+            self.distance_fallen = 0
         self.game.canvas.move(self.image, self.x, self.y)
 
 class DoorSprite(Sprite):
