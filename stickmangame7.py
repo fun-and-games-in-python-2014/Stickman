@@ -14,6 +14,7 @@ class Game:
         self.canvas_height = 500
         self.canvas_width = 500
         self.bg = PhotoImage(file="background.gif")
+        self.game_over=None
         w = self.bg.width()
         h = self.bg.height()
         for x in range(0, 5):
@@ -27,6 +28,9 @@ class Game:
         for sprite in self.sprites:
             sprite.restart()
             self.running = True
+        if self.game_over:
+            self.canvas.delete(self.game_over)
+            self.game_over=None
     def mainloop(self):
         while 1:
             if self.running == True:
@@ -255,6 +259,7 @@ class StickFigureSprite(Sprite):
             self.distance_fallen = 0
             self.splat = True
             self.animate()
+            self.game.game_over = self.game.canvas.create_text(220, 250, text=' Game Over', font=('Times', 60))
         else:
             self.distance_fallen = 0
         self.game.canvas.move(self.image, self.x, self.y)
@@ -277,6 +282,7 @@ class DoorSprite(Sprite):
         self.game.tk.update()
         time.sleep(0.5)
         self.game.canvas.itemconfig(self.image, image=self.photo_image)
+        self.game.game_over = self.game.canvas.create_text(220, 250, text='You Win!', font=('Times', 60))
 
 g = Game()
 platform1 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 0, 480, 100, 10)
