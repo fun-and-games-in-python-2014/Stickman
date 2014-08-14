@@ -234,12 +234,14 @@ class StickFigureSprite(Sprite):
                 self.x = 0
                 left = False
                 if sprite.endgame:
+                    sprite.animate_endgame(self)
                     self.game.running = False
  
             if right and self.x > 0 and collided_right(co, sprite_co):
                 self.x = 0
                 right = False
                 if sprite.endgame:
+                    sprite.animate_endgame(self)
                     self.game.running = False
             
         if falling and bottom and self.y == 0 and co.y2 < self.game.canvas_height:
@@ -262,7 +264,13 @@ class DoorSprite(Sprite):
         self.image = game.canvas.create_image(x, y, image=self.photo_image, anchor='nw')
         self.coordinates = Coords(x, y, x + (width / 2), y + height)
         self.endgame = True
-
+    def animate_endgame(self, player):
+        #change to open
+        #wait
+        #hide stickman
+        #wait
+        #door closes
+        pass
 
 g = Game()
 platform1 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 0, 480, 100, 10)
