@@ -138,6 +138,8 @@ class StickFigureSprite(Sprite):
         self.game.canvas.move(self.image, 200-pos[0], 470-pos[1])
         self.splat = False
         self.animate()
+    def hide(self):
+        self.game.canvas.move(self.image, 10000, 10000)
     def turn_left(self, evt):
         if self.y == 0:
             self.x = -2
@@ -234,12 +236,14 @@ class StickFigureSprite(Sprite):
                 self.x = 0
                 left = False
                 if sprite.endgame:
+                    sprite.animate_endgame(self)
                     self.game.running = False
  
             if right and self.x > 0 and collided_right(co, sprite_co):
                 self.x = 0
                 right = False
                 if sprite.endgame:
+                    sprite.animate_endgame(self)
                     self.game.running = False
             
         if falling and bottom and self.y == 0 and co.y2 < self.game.canvas_height:
@@ -262,7 +266,17 @@ class DoorSprite(Sprite):
         self.image = game.canvas.create_image(x, y, image=self.photo_image, anchor='nw')
         self.coordinates = Coords(x, y, x + (width / 2), y + height)
         self.endgame = True
-
+    def animate_endgame(self, player):
+        self.image_open = PhotoImage(file="door2.gif")
+        self.game.canvas.itemconfig(self.image, image=self.image_open)
+        self.game.tk.update_idletasks()
+        self.game.tk.update()
+        time.sleep(0.5)
+        player.hide()
+        self.game.tk.update_idletasks()
+        self.game.tk.update()
+        time.sleep(0.5)
+        self.game.canvas.itemconfig(self.image, image=self.photo_image)
 
 g = Game()
 platform1 = PlatformSprite(g, PhotoImage(file="long platform.gif"), 0, 480, 100, 10)
