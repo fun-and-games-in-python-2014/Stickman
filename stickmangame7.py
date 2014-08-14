@@ -8,7 +8,7 @@ class Game:
         self.tk.title("Agent Stick Man Races for the Exit")
         self.tk.resizable(0, 0)
         self.tk.wm_attributes("-topmost", 1)
-        self.canvas = Canvas(self.tk, width=1000, height=500, highlightthickness=0)
+        self.canvas = Canvas(self.tk, width=500, height=500, highlightthickness=0)
         self.canvas.pack()
         self.tk.update()
         self.canvas_height = 500
